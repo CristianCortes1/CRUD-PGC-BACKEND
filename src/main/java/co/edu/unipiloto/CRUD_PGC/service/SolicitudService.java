@@ -16,4 +16,10 @@ public interface SolicitudService {
     void solicitar(Long estacionId, Long distribuidorId, double cantidad);
 
     List<SolicitudAbastecimiento> listar();
+
+    SolicitudAbastecimiento buscarPorId(Long id);
+
+    SolicitudAbastecimiento actualizar(Long id, Long estacionId, Long distribuidorId, double cantidad);
+
+    void eliminar(Long id);
 }

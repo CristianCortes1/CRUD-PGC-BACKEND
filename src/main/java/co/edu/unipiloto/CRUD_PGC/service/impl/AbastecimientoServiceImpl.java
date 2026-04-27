@@ -5,6 +5,7 @@
 package co.edu.unipiloto.CRUD_PGC.service.impl;
 
 import co.edu.unipiloto.CRUD_PGC.exception.ResourceNotFoundException;
+import co.edu.unipiloto.CRUD_PGC.exception.SolicitudCompletadaException;
 import co.edu.unipiloto.CRUD_PGC.exception.StockInsuficienteException;
 import co.edu.unipiloto.CRUD_PGC.model.Abastecimiento;
 import co.edu.unipiloto.CRUD_PGC.model.Distribuidor;
@@ -47,7 +48,7 @@ public class AbastecimientoServiceImpl implements AbastecimientoService {
         }
 
         if ("COMPLETADO".equals(solicitud.getEstado())) {
-            throw new RuntimeException("La solicitud ya ha sido completada");
+            throw new SolicitudCompletadaException("La solicitud ya ha sido completada");
         }
 
         solicitud.setEstado("COMPLETADO");
