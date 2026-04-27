@@ -23,4 +23,6 @@ public class DistribuidorResponseDTO {
     private String nombre;
     private String ubicacion;
     private double stock;
+    private Long entidadReguladoraId;
+    private String entidadReguladoraNombre;
 }

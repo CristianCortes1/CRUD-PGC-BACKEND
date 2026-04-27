@@ -16,10 +16,11 @@ public class SolicitudMapper {
     public static SolicitudResponseDTO toDTO(SolicitudAbastecimiento s) {
         return SolicitudResponseDTO.builder()
                 .id(s.getId())
-                .usuarioNombre(s.getUsuario().getNombre())
+                .distribuidorNombre(s.getDistribuidor().getNombre())
                 .estacionNombre(s.getEstacion().getNombre())
                 .cantidad(s.getCantidad())
                 .fecha(s.getFecha())
+                .estado(s.getEstado())
                 .build();
     }
 }

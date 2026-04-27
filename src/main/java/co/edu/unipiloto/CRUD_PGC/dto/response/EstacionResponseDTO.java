@@ -22,5 +22,9 @@ public class EstacionResponseDTO {
     private Long id;
     private String nombre;
     private String direccion;
+    private double stock;
+    private double margenGanancia;
+    private double precioVenta;
+    private Long distribuidorId;
     private String distribuidorNombre;
 }

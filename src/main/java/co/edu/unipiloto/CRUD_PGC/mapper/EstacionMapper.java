@@ -28,7 +28,11 @@ public class EstacionMapper {
                 .id(e.getId())
                 .nombre(e.getNombre())
                 .direccion(e.getDireccion())
-                .distribuidorNombre(e.getDistribuidor().getNombre())
+                .stock(e.getStock())
+                .margenGanancia(e.getMargenGanancia())
+                .precioVenta(e.getPrecioVenta())
+                .distribuidorId(e.getDistribuidor() != null ? e.getDistribuidor().getId() : null)
+                .distribuidorNombre(e.getDistribuidor() != null ? e.getDistribuidor().getNombre() : null)
                 .build();
     }
 }

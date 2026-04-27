@@ -33,10 +33,11 @@ public class SolicitudAbastecimiento {
 
     private double cantidad;
     private LocalDateTime fecha;
+    private String estado;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    @JoinColumn(name = "distribuidor_id")
+    private Distribuidor distribuidor;
 
     @ManyToOne
     @JoinColumn(name = "estacion_id")

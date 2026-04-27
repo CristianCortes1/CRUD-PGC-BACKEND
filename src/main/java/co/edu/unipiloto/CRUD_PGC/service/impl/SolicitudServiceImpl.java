@@ -5,12 +5,12 @@
 package co.edu.unipiloto.CRUD_PGC.service.impl;
 
 import co.edu.unipiloto.CRUD_PGC.exception.ResourceNotFoundException;
+import co.edu.unipiloto.CRUD_PGC.model.Distribuidor;
 import co.edu.unipiloto.CRUD_PGC.model.EstacionServicio;
 import co.edu.unipiloto.CRUD_PGC.model.SolicitudAbastecimiento;
-import co.edu.unipiloto.CRUD_PGC.model.Usuario;
+import co.edu.unipiloto.CRUD_PGC.repository.DistribuidorRepository;
 import co.edu.unipiloto.CRUD_PGC.repository.EstacionServicioRepository;
 import co.edu.unipiloto.CRUD_PGC.repository.SolicitudAbastecimientoRepository;
-import co.edu.unipiloto.CRUD_PGC.repository.UsuarioRepository;
 import co.edu.unipiloto.CRUD_PGC.service.SolicitudService;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,23 +26,24 @@ import org.springframework.stereotype.Service;
 public class SolicitudServiceImpl implements SolicitudService {
 
     private final SolicitudAbastecimientoRepository solicitudRepo;
-    private final UsuarioRepository usuarioRepo;
+    private final DistribuidorRepository distribuidorRepo;
     private final EstacionServicioRepository estacionRepo;
 
     @Override
-    public void solicitar(Long usuarioId, Long estacionId, double cantidad) {
-
-        Usuario usuario = usuarioRepo.findById(usuarioId)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+    public void solicitar(Long estacionId, Long distribuidorId, double cantidad) {
 
         EstacionServicio estacion = estacionRepo.findById(estacionId)
                 .orElseThrow(() -> new ResourceNotFoundException("Estación no encontrada"));
 
+        Distribuidor distribuidor = distribuidorRepo.findById(distribuidorId)
+                .orElseThrow(() -> new ResourceNotFoundException("Distribuidor no encontrado"));
+
         SolicitudAbastecimiento solicitud = SolicitudAbastecimiento.builder()
-                .usuario(usuario)
+                .distribuidor(distribuidor)
                 .estacion(estacion)
                 .cantidad(cantidad)
                 .fecha(LocalDateTime.now())
+                .estado("ACTIVO")
                 .build();
 
         solicitudRepo.save(solicitud);

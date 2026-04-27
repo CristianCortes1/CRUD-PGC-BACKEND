@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -39,4 +40,8 @@ public class Abastecimiento {
 
     @ManyToOne
     private EstacionServicio estacion;
+
+    @ManyToOne
+    @JoinColumn(name = "solicitud_id")
+    private SolicitudAbastecimiento solicitud;
 }

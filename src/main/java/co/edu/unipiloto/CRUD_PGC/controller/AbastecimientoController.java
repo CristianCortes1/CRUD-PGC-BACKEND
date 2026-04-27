@@ -25,8 +25,6 @@ public class AbastecimientoController {
     
     @PostMapping
     public void abastecer(@RequestBody AbastecimientoRequestDTO dto) {
-        service.abastecer(dto.getDistribuidorId(),
-                dto.getEstacionId(),
-                dto.getCantidad());
+        service.abastecer(dto.getSolicitudId());
     }
 }

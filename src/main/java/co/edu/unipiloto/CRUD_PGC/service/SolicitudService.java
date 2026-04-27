@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface SolicitudService {
 
-    void solicitar(Long usuarioId, Long estacionId, double cantidad);
+    void solicitar(Long estacionId, Long distribuidorId, double cantidad);
 
     List<SolicitudAbastecimiento> listar();
 }

@@ -30,6 +30,8 @@ public class DistribuidorMapper {
                 .nombre(d.getNombre())
                 .ubicacion(d.getUbicacion())
                 .stock(d.getStock())
+                .entidadReguladoraId(d.getEntidadReguladora() != null ? d.getEntidadReguladora().getId() : null)
+                .entidadReguladoraNombre(d.getEntidadReguladora() != null ? d.getEntidadReguladora().getNombre() : null)
                 .build();
     }
 }

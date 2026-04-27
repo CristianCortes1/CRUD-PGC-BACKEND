@@ -21,8 +21,9 @@ import lombok.NoArgsConstructor;
 public class SolicitudResponseDTO {
 
     private Long id;
-    private String usuarioNombre;
+    private String distribuidorNombre;
     private String estacionNombre;
     private double cantidad;
     private LocalDateTime fecha;
+    private String estado;
 }

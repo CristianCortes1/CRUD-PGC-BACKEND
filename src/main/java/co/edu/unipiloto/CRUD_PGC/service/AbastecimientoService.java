@@ -10,5 +10,5 @@ package co.edu.unipiloto.CRUD_PGC.service;
  */
 public interface AbastecimientoService {
 
-    void abastecer(Long distribuidorId, Long estacionId, double cantidad);
+    void abastecer(Long solicitudId);
 }

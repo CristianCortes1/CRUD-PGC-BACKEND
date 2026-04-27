@@ -19,7 +19,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AbastecimientoRequestDTO {
 
-    private Long distribuidorId;
-    private Long estacionId;
-    private double cantidad;
+    private Long solicitudId;
 }

@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SolicitudRequestDTO {
 
-    private Long usuarioId;
+    private Long distribuidorId;
     private Long estacionId;
     private double cantidad;
 }

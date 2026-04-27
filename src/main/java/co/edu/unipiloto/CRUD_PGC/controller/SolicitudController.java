@@ -30,7 +30,7 @@ public class SolicitudController {
 
     @PostMapping
     public void solicitar(@RequestBody SolicitudRequestDTO dto) {
-        service.solicitar(dto.getUsuarioId(), dto.getEstacionId(), dto.getCantidad());
+        service.solicitar(dto.getEstacionId(), dto.getDistribuidorId(), dto.getCantidad());
     }
 
     @GetMapping
