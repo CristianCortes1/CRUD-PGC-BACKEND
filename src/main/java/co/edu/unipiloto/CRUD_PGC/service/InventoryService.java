@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface InventoryService {
     List<Inventory> buscarPorEstacion(Long estacionId);
+    Inventory actualizarCantidad(Long inventoryId, double nuevaCantidad);
 }

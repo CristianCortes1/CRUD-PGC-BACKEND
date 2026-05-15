@@ -1,5 +1,6 @@
 package co.edu.unipiloto.CRUD_PGC.service.impl;
 
+import co.edu.unipiloto.CRUD_PGC.exception.ResourceNotFoundException;
 import co.edu.unipiloto.CRUD_PGC.model.Inventory;
 import co.edu.unipiloto.CRUD_PGC.service.InventoryService;
 import java.util.List;
@@ -15,5 +16,13 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public List<Inventory> buscarPorEstacion(Long estacionId) {
         return inventarioRepository.findByEstacionId(estacionId);
+    }
+
+    @Override
+    public Inventory actualizarCantidad(Long inventoryId, double nuevaCantidad) {
+        Inventory inventory = inventarioRepository.findById(inventoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Inventory not found with id: " + inventoryId));
+        inventory.setCantidadCombustible(nuevaCantidad);
+        return inventarioRepository.save(inventory);
     }
 }

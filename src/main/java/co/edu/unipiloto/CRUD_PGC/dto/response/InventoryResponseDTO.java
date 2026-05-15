@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class InventoryResponseDTO {
     private Long id;
     private Long estacionId;
+    private String estacionUsername;
     private FuelResponseDTO combustible;
     private double cantidadActual;
     private double capacidadMaxima;

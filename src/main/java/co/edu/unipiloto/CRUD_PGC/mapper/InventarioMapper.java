@@ -8,10 +8,13 @@ public class InventarioMapper {
         return InventoryResponseDTO.builder()
                 .id(inventario.getId())
                 .estacionId(inventario.getEstacion() == null ? null : inventario.getEstacion().getId())
+                .estacionUsername(inventario.getEstacion() == null ? null : inventario.getEstacion().getUsername())
                 .combustible(CombustibleMapper.toDTO(inventario.getCombustible()))
                 .cantidadActual(inventario.getCantidadCombustible())
                 .capacidadMaxima(inventario.getCapacidadMaxima())
                 .nivelMinimo(inventario.getNivelMinimo())
                 .build();
     }
+    
+    
 }

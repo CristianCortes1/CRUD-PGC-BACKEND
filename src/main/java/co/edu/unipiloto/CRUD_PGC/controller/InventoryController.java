@@ -6,13 +6,16 @@ import co.edu.unipiloto.CRUD_PGC.service.InventoryService;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/inventory")
+@RequestMapping("/api/inventories")
 @RequiredArgsConstructor
 public class InventoryController {
     private final InventoryService inventoryService;
@@ -23,5 +26,13 @@ public class InventoryController {
                 .stream()
                 .map(InventarioMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @PutMapping("/{id}/cantidad")
+    public ResponseEntity<InventoryResponseDTO> actualizarCantidad(
+            @PathVariable Long id,
+            @RequestParam double cantidad) {
+        var inventory = inventoryService.actualizarCantidad(id, cantidad);
+        return ResponseEntity.ok(InventarioMapper.toDTO(inventory));
     }
 }

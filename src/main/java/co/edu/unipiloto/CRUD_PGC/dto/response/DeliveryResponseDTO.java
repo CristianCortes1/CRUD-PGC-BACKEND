@@ -14,10 +14,12 @@ public class DeliveryResponseDTO {
     private String placa;
     private double cantidad;
     private String estado;
-    private String fecha;
+    private String fechaFormateada;
     private String fechaConfirmacion;
     private Long estacionDestinoId;
+    private String estacionUsername;
     private Long distribuidorId;
+    private String distribuidorUsername;
     private Long confirmadoPorId;
     private FuelResponseDTO combustible;
 }

@@ -12,22 +12,6 @@ import co.edu.unipiloto.CRUD_PGC.model.StationProjection;
  * @author cristian-cortes
  */
 public class StationMapper {
-    public static StationResponseDTO toDTO(StationProjection station) {
-        if (station == null) {
-            return null;
-        }
-        return StationResponseDTO.builder()
-                .nombre(station.getNombre())
-                .direccion(station.getDireccion())
-                .latitud(station.getLatitud())
-                .longitud(station.getLongitud())
-                .distancia(station.getDistancia())
-                .precioCorriente(station.getPrecioCorriente())
-                .precioDiesel(station.getPrecioDiesel())
-                .precioExtra(station.getPrecioExtra())
-                .precioGNV(station.getPrecioGNV())
-                .build();
-    }
 
     public static StationResponseDTO toDTO(StationProjection station, double distanciaCarretera) {
         if (station == null) {
