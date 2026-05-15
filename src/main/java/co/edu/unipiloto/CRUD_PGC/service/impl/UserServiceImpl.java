@@ -8,7 +8,6 @@ import co.edu.unipiloto.CRUD_PGC.model.User;
 import co.edu.unipiloto.CRUD_PGC.repository.RolRepository;
 import co.edu.unipiloto.CRUD_PGC.service.UserService;
 import co.edu.unipiloto.CRUD_PGC.dto.response.UserResponseDTO;
-import co.edu.unipiloto.CRUD_PGC.exception.UnauthorizedException;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -46,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserResponseDTO> getAllUsers() {
-        return usuarioRepository.findByRolId(5L).stream()
+        return usuarioRepository.findByRolId(2L).stream()
                 .map(UserMapper::toDTO)
                 .collect(Collectors.toList());
     }
