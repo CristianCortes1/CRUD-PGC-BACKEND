@@ -1,0 +1,2 @@
+-- Script convertido para PostgreSQL
+INSERT INTO Roles (id, nombre) VALUES (1, 'Estacion de servicio'), (2, 'Usuario vehiculo particular'), (3, 'Autoridad reguladora'), (4, 'Usuario vehiculo con subsidio'), (5, 'Distribuidor mayorista'), (6, 'Administrador de reglas'), (7, 'Administrador de usuarios') ON CONFLICT (id) DO NOTHING;

@@ -44,6 +44,14 @@ public class GlobalExceptionHandler {
         return error;
     }
 
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Map<String, String> manejarUnauthorized(UnauthorizedException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return error;
+    }
+
     @ExceptionHandler(MargenInvalidoException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> manejarMargenInvalido(MargenInvalidoException ex) {
