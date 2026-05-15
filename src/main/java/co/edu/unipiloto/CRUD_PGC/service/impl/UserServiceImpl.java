@@ -22,9 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User crear(UserRequestDTO dto) {
-        Rol rol = rolRepository.findByNombre(dto.getRol())
-                .orElseThrow(() -> new ResourceNotFoundException("Rol no encontrado"));
-        User usuario = UserMapper.toEntity(dto, rol);
+        User usuario = UserMapper.toEntity(dto);
         return usuarioRepository.save(usuario);
     }
 

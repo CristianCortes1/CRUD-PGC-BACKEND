@@ -1,5 +1,6 @@
 package co.edu.unipiloto.CRUD_PGC.dto.request;
 
+import co.edu.unipiloto.CRUD_PGC.model.Rol;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,5 +21,5 @@ public class UserRequestDTO {
     private Double longitud;
     private LocalDate fechaNacimiento;
     private String genero;
-    private String rol;
+    private Rol rol;
 }

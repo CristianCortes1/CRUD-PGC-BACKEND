@@ -1,14 +1,13 @@
 package co.edu.unipiloto.CRUD_PGC.mapper;
 
 import co.edu.unipiloto.CRUD_PGC.dto.request.UserRequestDTO;
-import co.edu.unipiloto.CRUD_PGC.dto.response.LoginResponseDTO;
 import co.edu.unipiloto.CRUD_PGC.dto.response.UserResponseDTO;
 import co.edu.unipiloto.CRUD_PGC.model.Rol;
 import co.edu.unipiloto.CRUD_PGC.model.User;
 import java.time.LocalDate;
 
 public class UserMapper {
-    public static User toEntity(UserRequestDTO dto, Rol rol) {
+    public static User toEntity(UserRequestDTO dto) {
         return User.builder()
                 .nombreCompleto(dto.getNombreCompleto())
                 .username(dto.getUsername())
@@ -19,7 +18,7 @@ public class UserMapper {
                 .longitud(dto.getLongitud())
                 .fechaNacimiento(dto.getFechaNacimiento())
                 .genero(dto.getGenero())
-                .rol(rol)
+                .rol(dto.getRol())
                 .build();
     }
 
@@ -34,16 +33,6 @@ public class UserMapper {
                 .longitud(usuario.getLongitud())
                 .fechaNacimiento(usuario.getFechaNacimiento() == null ? null : usuario.getFechaNacimiento().toString())
                 .genero(usuario.getGenero())
-                .rol(usuario.getRol())
-                .build();
-    }
-
-    public static LoginResponseDTO toLoginDTO(User usuario) {
-        return LoginResponseDTO.builder()
-                .id(usuario.getId())
-                .username(usuario.getUsername())
-                .nombreCompleto(usuario.getNombreCompleto())
-                .email(usuario.getEmail())
                 .rol(usuario.getRol())
                 .build();
     }

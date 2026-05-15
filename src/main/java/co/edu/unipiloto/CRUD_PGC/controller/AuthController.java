@@ -1,7 +1,6 @@
 package co.edu.unipiloto.CRUD_PGC.controller;
 
 import co.edu.unipiloto.CRUD_PGC.dto.request.LoginRequestDTO;
-import co.edu.unipiloto.CRUD_PGC.dto.response.LoginResponseDTO;
 import co.edu.unipiloto.CRUD_PGC.dto.response.UserResponseDTO;
 import co.edu.unipiloto.CRUD_PGC.mapper.UserMapper;
 import co.edu.unipiloto.CRUD_PGC.model.User;
@@ -21,9 +20,9 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public LoginResponseDTO login(@RequestBody LoginRequestDTO dto) {
+    public UserResponseDTO login(@RequestBody LoginRequestDTO dto) {
         User usuario = authService.login(dto.getUsername(), dto.getPassword());
-        return UserMapper.toLoginDTO(usuario);
+        return UserMapper.toDTO(usuario);
     }
     
     @GetMapping("/verificarUsername/{username}")

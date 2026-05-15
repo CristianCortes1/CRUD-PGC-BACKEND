@@ -5,5 +5,5 @@ import co.edu.unipiloto.CRUD_PGC.model.User;
 public interface AuthService {
     User login(String username, String password);
 
-    public Boolean verifyUsername(String username);
+    Boolean verifyUsername(String username);
 }

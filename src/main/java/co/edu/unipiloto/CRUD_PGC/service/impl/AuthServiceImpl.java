@@ -27,6 +27,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Boolean verifyUsername(String username) {
-        return usuarioRepository.findByUsername(username) == null ? false : true;
+        return usuarioRepository.existsByUsername(username);
     }
 }

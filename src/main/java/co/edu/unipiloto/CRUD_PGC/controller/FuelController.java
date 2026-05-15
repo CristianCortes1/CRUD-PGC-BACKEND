@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/combustibles")
+@RequestMapping("/api/fuels")
 @RequiredArgsConstructor
 public class FuelController {
     private final FuelService combustibleService;
 
     @GetMapping
-    public List<FuelResponseDTO> listarTodos() {
+    public List<FuelResponseDTO> getAllFuels() {
         return combustibleService.buscarTodos()
                 .stream()
                 .map(CombustibleMapper::toDTO)
