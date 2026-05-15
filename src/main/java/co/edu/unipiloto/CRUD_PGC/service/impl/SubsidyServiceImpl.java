@@ -16,9 +16,9 @@ public class SubsidyServiceImpl implements SubsidyService {
     private final SubsidyRepository subsidyRepository;
 
     @Override
-    public SubsidyResponseDTO getSubsidyById(int id) {
-        Subsidy subsidy = subsidyRepository.findById((long) id)
-                .orElseThrow(() -> new ResourceNotFoundException("Subsidy not found with id: " + id));
+    public SubsidyResponseDTO getSubsidyByUserId(int userId) {
+        Subsidy subsidy = subsidyRepository.findByUsuario_Id((long) userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Subsidy not found for user id: " + userId));
         return SubsidyMapper.toDTO(subsidy);
     }
 }

@@ -16,9 +16,9 @@ public class SubsidyController {
 
     private final SubsidyService subsidyService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<SubsidyResponseDTO> getSubsidyById(@PathVariable int id) {
-        SubsidyResponseDTO response = subsidyService.getSubsidyById(id);
+    @GetMapping("/{userId}")
+    public ResponseEntity<SubsidyResponseDTO> getSubsidyByUserId(@PathVariable int userId) {
+        SubsidyResponseDTO response = subsidyService.getSubsidyByUserId(userId);
         return ResponseEntity.ok(response);
     }
 }
