@@ -18,7 +18,6 @@ import co.edu.unipiloto.CRUD_PGC.repository.UserRepository;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository usuarioRepository;
-    private final RolRepository rolRepository;
 
     @Override
     public User crear(UserRequestDTO dto) {
