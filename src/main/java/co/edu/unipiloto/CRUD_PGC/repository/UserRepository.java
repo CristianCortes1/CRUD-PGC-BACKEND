@@ -28,7 +28,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
             MAX(CASE WHEN c.nombre = 'ACPM(Diésel)' THEN p.precio END) AS precioDiesel,
             MAX(CASE WHEN c.nombre = 'Gas Natural Vehicular' THEN p.precio END) AS precioGNV,
 
-            (POWER(u.latitud - :latUser, 2) + POWER(u.longitud - :lonUser, 2)) AS distancia
+            ROUND((6371 * (
+                2 * ASIN(
+                    SQRT(
+                        POWER(SIN((u.latitud - :latUser) * PI() / 180 / 2), 2) +
+                        COS(:latUser * PI() / 180) * COS(u.latitud * PI() / 180) *
+                        POWER(SIN((u.longitud - :lonUser) * PI() / 180 / 2), 2)
+                    )
+                )
+            ))::numeric, 2) AS distancia
 
         FROM users u
         JOIN precios p ON u.id = p.id_estacion

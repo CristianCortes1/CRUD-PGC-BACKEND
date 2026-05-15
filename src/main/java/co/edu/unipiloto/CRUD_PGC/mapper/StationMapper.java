@@ -28,4 +28,21 @@ public class StationMapper {
                 .precioGNV(station.getPrecioGNV())
                 .build();
     }
+
+    public static StationResponseDTO toDTO(StationProjection station, double distanciaCarretera) {
+        if (station == null) {
+            return null;
+        }
+        return StationResponseDTO.builder()
+                .nombre(station.getNombre())
+                .direccion(station.getDireccion())
+                .latitud(station.getLatitud())
+                .longitud(station.getLongitud())
+                .distancia(Math.round(distanciaCarretera * 100.0) / 100.0)
+                .precioCorriente(station.getPrecioCorriente())
+                .precioDiesel(station.getPrecioDiesel())
+                .precioExtra(station.getPrecioExtra())
+                .precioGNV(station.getPrecioGNV())
+                .build();
+    }
 }
