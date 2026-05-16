@@ -17,6 +17,7 @@ Sistema de gestión backend para administración de la cadena de suministro de c
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Variables de Entorno](#variables-de-entorno)
+- [Balanceo de Carga con Nginx](#balanceo-de-carga-con-nginx)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 
 ## Características
@@ -105,6 +106,50 @@ Content-Type: application/json
 | `SPRING_DATASOURCE_USERNAME` | Usuario de la base de datos | `crud_pgc` |
 | `SPRING_DATASOURCE_PASSWORD` | Contraseña de la base de datos | `crud_pgc` |
 | `ORS_API_KEY` | Clave API para OpenRouteService | `<your-api-key>` |
+
+## Balanceo de Carga con Nginx
+
+El proyecto incluye configuración de Nginx para balanceo de carga entre múltiples instancias de la aplicación.
+
+### Configuración de Nginx
+
+El archivo de configuración se encuentra en `/etc/nginx/sites-available/default`:
+
+```nginx
+upstream backend {
+    server localhost:8080;
+    server localhost:8081;
+}
+
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://backend;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+
+### Cómo funciona
+
+- Nginx escucha en el puerto 80 y distribuye las solicitudes entre las instancias de Spring Boot en los puertos 8080 y 8081
+- El balanceo es round-robin por defecto
+- Los headers `Host` y `X-Real-IP` se pasan a los backend para mantener la información del cliente
+
+### Ejecución con múltiples instancias
+
+Para ejecutar múltiples instancias de la aplicación en diferentes puertos:
+
+```bash
+# Instancia 1 (puerto 8080 - por defecto)
+./mvnw spring-boot:run
+
+# Instancia 2 (puerto 8081)
+./mvnw spring-boot:run -Dserver.port=8081
+```
 
 ## Estructura del Proyecto
 
