@@ -1,5 +1,7 @@
 package co.edu.unipiloto.CRUD_PGC.service.impl;
 
+import co.edu.unipiloto.CRUD_PGC.dto.response.PriceResponseDTO;
+import co.edu.unipiloto.CRUD_PGC.mapper.PriceMapper;
 import co.edu.unipiloto.CRUD_PGC.model.Price;
 import co.edu.unipiloto.CRUD_PGC.service.PriceService;
 import java.util.Comparator;
@@ -15,21 +17,10 @@ public class PriceServiceImpl implements PriceService {
     private final PriceRepository precioRepository;
 
     @Override
-    public List<Price> buscarCercanos(double latitud, double longitud) {
-        return precioRepository.findAll()
-                .stream()
-                .sorted(Comparator.comparingDouble(precio -> distancia(precio, latitud, longitud)))
+    public List<PriceResponseDTO> getAllPricesByEstacionId(Long id) {
+        return precioRepository.findByEstacionId(id).stream()
+                .map(PriceMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
-    private double distancia(Price precio, double latitud, double longitud) {
-        if (precio.getEstacion() == null
-                || precio.getEstacion().getLatitud() == null
-                || precio.getEstacion().getLongitud() == null) {
-            return Double.MAX_VALUE;
-        }
-        double dLat = precio.getEstacion().getLatitud() - latitud;
-        double dLon = precio.getEstacion().getLongitud() - longitud;
-        return Math.sqrt((dLat * dLat) + (dLon * dLon));
-    }
 }

@@ -1,5 +1,6 @@
 package co.edu.unipiloto.CRUD_PGC.dto.response;
 
+import co.edu.unipiloto.CRUD_PGC.model.Fuel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +14,6 @@ public class PriceResponseDTO {
     private Long id;
     private double precio;
     private Long estacionId;
-    private String estacionNombre;
-    private Double estacionLatitud;
-    private Double estacionLongitud;
-    private FuelResponseDTO combustible;
+    private String estacionUsername;
+    private Fuel combustible;
 }
