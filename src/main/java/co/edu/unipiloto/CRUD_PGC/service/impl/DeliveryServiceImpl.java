@@ -71,7 +71,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Override
     @Transactional
-    public void insertDelivery(DeliveryRequestDTO dto) {
+    public Delivery insertDelivery(DeliveryRequestDTO dto) {
         User estacion = userRepository.findById((long) dto.getEstacionId())
                 .orElseThrow(() -> new ResourceNotFoundException("Estación no encontrada con ID: " + dto.getEstacionId()));
 
@@ -99,6 +99,7 @@ public class DeliveryServiceImpl implements DeliveryService {
                 .build();
 
         entregaRepository.save(entrega);
+        return entrega;
     }
 
     @Override

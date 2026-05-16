@@ -8,7 +8,7 @@ import java.util.List;
 public interface DeliveryService {
     Delivery confirmar(Long entregaId);
 
-    void insertDelivery(DeliveryRequestDTO dto);
+    Delivery insertDelivery(DeliveryRequestDTO dto);
 
     Delivery markAsDelivered(Long deliveryId, String placa);
 

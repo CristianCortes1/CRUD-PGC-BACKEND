@@ -29,8 +29,9 @@ public class DeliveryController {
     }
     
     @PostMapping()
-    public void insertDelivery(@RequestBody DeliveryRequestDTO dto){
-        deliveryService.insertDelivery(dto);
+    public DeliveryResponseDTO insertDelivery(@RequestBody DeliveryRequestDTO dto){
+        Delivery entrega = deliveryService.insertDelivery(dto);
+        return DeliveryMapper.toDTO(entrega);
     }
 
     @PutMapping("/{id}/delivered")
