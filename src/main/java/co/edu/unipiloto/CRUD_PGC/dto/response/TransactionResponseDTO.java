@@ -1,6 +1,5 @@
 package co.edu.unipiloto.CRUD_PGC.dto.response;
 
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +14,11 @@ public class TransactionResponseDTO {
     private String tipoVehiculo;
     private double cantidad;
     private double total;
-    private LocalDateTime fecha;
+    private String fechaFormateada;
     private Long estacionId;
-    private Long clienteId;
+    private String estacionUsername;
+    private Long userId;
+    private String userUsername;
+    private String estado;
     private FuelResponseDTO combustible;
 }

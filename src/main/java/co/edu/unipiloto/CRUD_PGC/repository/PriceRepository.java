@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PriceRepository extends JpaRepository<Price, Long> {
     List<Price> findByEstacionId(Long estacionId);
+
+    java.util.Optional<Price> findByEstacionIdAndCombustibleId(Long estacionId, Long combustibleId);
 }

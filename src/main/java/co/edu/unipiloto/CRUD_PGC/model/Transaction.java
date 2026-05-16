@@ -33,6 +33,9 @@ public class Transaction {
     @jakarta.persistence.Transient
     private String fechaFormateada;
 
+    @jakarta.persistence.Transient
+    private String estado;
+
     @ManyToOne
     @JoinColumn(name = "id_combustible")
     private Fuel combustible;
