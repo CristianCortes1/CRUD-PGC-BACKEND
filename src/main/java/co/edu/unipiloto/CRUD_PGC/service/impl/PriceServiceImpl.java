@@ -30,4 +30,13 @@ public class PriceServiceImpl implements PriceService {
         return PriceMapper.toDTO(price);
     }
 
+    @Override
+    public PriceResponseDTO updatePrice(Long priceId, Double newPrice) {
+        Price price = precioRepository.findById(priceId)
+                .orElseThrow(() -> new RuntimeException("Price not found with id: " + priceId));
+        price.setPrecio(newPrice);
+        Price updated = precioRepository.save(price);
+        return PriceMapper.toDTO(updated);
+    }
+
 }
