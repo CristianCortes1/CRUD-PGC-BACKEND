@@ -6,6 +6,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PriceRepository extends JpaRepository<Price, Long> {
-    List<Price> findByOwnerId(Long ownerId);
+    List<Price> findByOwnerIdOrderByIdAsc(Long ownerId);
     Optional<Price> findByOwnerIdAndCombustibleId(Long ownerId, Long combustibleId);
 }

@@ -2,6 +2,7 @@ package co.edu.unipiloto.CRUD_PGC.service.impl;
 
 import co.edu.unipiloto.CRUD_PGC.dto.request.DeliveryRequestDTO;
 import co.edu.unipiloto.CRUD_PGC.dto.response.DeliveryResponseDTO;
+import co.edu.unipiloto.CRUD_PGC.exception.CapacidadMaximaExcedidaException;
 import co.edu.unipiloto.CRUD_PGC.exception.ResourceNotFoundException;
 import co.edu.unipiloto.CRUD_PGC.mapper.DeliveryMapper;
 import co.edu.unipiloto.CRUD_PGC.model.Delivery;
@@ -47,7 +48,12 @@ public class DeliveryServiceImpl implements DeliveryService {
                 .findByOwnerIdAndCombustibleId(entrega.getEstacion().getId(), entrega.getCombustible().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Inventory de estación no encontrado"));
 
-        inventarioEstacion.setCantidadCombustible(inventarioEstacion.getCantidadCombustible() + entrega.getCantidad());
+        double nuevaCantidad = inventarioEstacion.getCantidadCombustible() + entrega.getCantidad();
+        if (nuevaCantidad > inventarioEstacion.getCapacidadMaxima()) {
+            throw new CapacidadMaximaExcedidaException("La cantidad confirmada excede la capacidad máxima del inventario");
+        }
+
+        inventarioEstacion.setCantidadCombustible(nuevaCantidad);
         inventarioRepository.save(inventarioEstacion);
 
         if (entrega.getDistribuidor() != null) {

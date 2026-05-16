@@ -67,4 +67,12 @@ public class GlobalExceptionHandler {
         error.put("error", ex.getMessage());
         return error;
     }
+
+    @ExceptionHandler(CapacidadMaximaExcedidaException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, String> manejarCapacidadMaximaExcedida(CapacidadMaximaExcedidaException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", ex.getMessage());
+        return error;
+    }
 }

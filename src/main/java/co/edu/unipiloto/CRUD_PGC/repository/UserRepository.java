@@ -39,7 +39,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             ))::numeric, 2) AS distancia
 
         FROM users u
-        JOIN precios p ON u.id = p.id_estacion
+        JOIN precios p ON u.id = p.owner_id
         JOIN combustibles c ON p.id_combustible = c.id
 
         WHERE u.rol_id = 1

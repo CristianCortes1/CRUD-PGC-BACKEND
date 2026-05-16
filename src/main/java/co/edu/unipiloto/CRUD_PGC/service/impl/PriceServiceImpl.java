@@ -18,7 +18,7 @@ public class PriceServiceImpl implements PriceService {
 
     @Override
     public List<PriceResponseDTO> getAllPricesByOwnerId(Long ownerId) {
-        return precioRepository.findByOwnerId(ownerId).stream()
+        return precioRepository.findByOwnerIdOrderByIdAsc(ownerId).stream()
                 .map(PriceMapper::toDTO)
                 .collect(Collectors.toList());
     }
