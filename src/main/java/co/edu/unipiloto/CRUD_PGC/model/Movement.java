@@ -33,7 +33,7 @@ public class Movement {
 
     private double cantidad;
 
-    private double total;
+    private Double total;
 
     private LocalDateTime fecha;
 

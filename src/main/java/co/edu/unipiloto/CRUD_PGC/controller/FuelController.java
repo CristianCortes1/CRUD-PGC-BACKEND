@@ -1,7 +1,7 @@
 package co.edu.unipiloto.CRUD_PGC.controller;
 
 import co.edu.unipiloto.CRUD_PGC.dto.response.FuelResponseDTO;
-import co.edu.unipiloto.CRUD_PGC.mapper.CombustibleMapper;
+import co.edu.unipiloto.CRUD_PGC.mapper.FuelMapper;
 import co.edu.unipiloto.CRUD_PGC.service.FuelService;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +20,7 @@ public class FuelController {
     public List<FuelResponseDTO> getAllFuels() {
         return combustibleService.buscarTodos()
                 .stream()
-                .map(CombustibleMapper::toDTO)
+                .map(FuelMapper::toDTO)
                 .collect(Collectors.toList());
     }
 }

@@ -12,7 +12,7 @@ public class PriceMapper {
                 .precio(precio.getPrecio())
                 .estacionId(estacion.getId())
                 .estacionUsername(estacion.getNombreCompleto())
-                .combustible(precio.getCombustible())
+                .combustible(precio.getCombustible())      
                 .build();
     }
 }

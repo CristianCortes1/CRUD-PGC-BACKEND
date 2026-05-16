@@ -24,7 +24,7 @@ public class TransaccionMapper {
                 .userId(transaccion.getCliente() == null ? null : transaccion.getCliente().getId())
                 .userUsername(transaccion.getCliente() == null ? null : transaccion.getCliente().getUsername())
                 .estado(transaccion.getEstado())
-                .combustible(CombustibleMapper.toDTO(transaccion.getCombustible()))
+                .combustible(FuelMapper.toDTO(transaccion.getCombustible()))
                 .build();
     }
 }

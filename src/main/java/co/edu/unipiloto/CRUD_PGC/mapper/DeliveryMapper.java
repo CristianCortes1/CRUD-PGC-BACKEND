@@ -31,7 +31,7 @@ public class DeliveryMapper {
                 .distribuidorId(entrega.getDistribuidor() == null ? null : entrega.getDistribuidor().getId())
                 .distribuidorUsername(entrega.getDistribuidor() == null ? null : entrega.getDistribuidor().getUsername())
                 .confirmadoPorId(entrega.getConfirmadoPor() == null ? null : entrega.getConfirmadoPor().getId())
-                .combustible(CombustibleMapper.toDTO(entrega.getCombustible()))
+                .combustible(FuelMapper.toDTO(entrega.getCombustible()))
                 .build();
     }
 }
