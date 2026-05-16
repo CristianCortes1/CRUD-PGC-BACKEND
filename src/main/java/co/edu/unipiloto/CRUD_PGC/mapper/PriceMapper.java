@@ -6,12 +6,12 @@ import co.edu.unipiloto.CRUD_PGC.model.User;
 
 public class PriceMapper {
     public static PriceResponseDTO toDTO(Price precio) {
-        User estacion = precio.getEstacion();
+        User owner = precio.getOwner();
         return PriceResponseDTO.builder()
                 .id(precio.getId())
                 .precio(precio.getPrecio())
-                .estacionId(estacion.getId())
-                .estacionUsername(estacion.getNombreCompleto())
+                .ownerId(owner.getId())
+                .ownerUsername(owner.getNombreCompleto())
                 .combustible(precio.getCombustible())      
                 .build();
     }

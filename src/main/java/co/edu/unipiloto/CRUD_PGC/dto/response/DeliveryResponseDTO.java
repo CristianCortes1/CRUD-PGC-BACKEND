@@ -13,6 +13,7 @@ public class DeliveryResponseDTO {
     private Long id;
     private String placa;
     private double cantidad;
+    private Double total;
     private String estado;
     private String fechaFormateada;
     private String fechaConfirmacion;

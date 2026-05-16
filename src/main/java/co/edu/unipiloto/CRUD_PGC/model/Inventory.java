@@ -24,8 +24,8 @@ public class Inventory {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_estacion")
-    private User estacion;
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
     @ManyToOne
     @JoinColumn(name = "id_combustible")

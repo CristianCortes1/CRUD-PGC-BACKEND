@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class PriceController {
     private final PriceService priceService;
 
-    @GetMapping("/{id}")
-    private List<PriceResponseDTO> getAllPricesByEstacionId(@PathVariable Long id){
-        return priceService.getAllPricesByEstacionId(id);
+    @GetMapping("/owner/{id}")
+    private List<PriceResponseDTO> getAllPricesByOwnerId(@PathVariable Long id){
+        return priceService.getAllPricesByOwnerId(id);
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import co.edu.unipiloto.CRUD_PGC.repository.DeliveryRepository;
 import co.edu.unipiloto.CRUD_PGC.repository.FuelRepository;
 import co.edu.unipiloto.CRUD_PGC.repository.InventoryRepository;
+import co.edu.unipiloto.CRUD_PGC.repository.PriceRepository;
 import co.edu.unipiloto.CRUD_PGC.repository.UserRepository;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     private final InventoryRepository inventarioRepository;
     private final UserRepository userRepository;
     private final FuelRepository fuelRepository;
+    private final PriceRepository priceRepository;
 
     @Override
     @Transactional
@@ -41,12 +43,21 @@ public class DeliveryServiceImpl implements DeliveryService {
             throw new ResourceNotFoundException("Delivery sin estacion o combustible");
         }
 
-        Inventory inventario = inventarioRepository
-                .findByEstacionIdAndCombustibleId(entrega.getEstacion().getId(), entrega.getCombustible().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Inventory no encontrado"));
+        Inventory inventarioEstacion = inventarioRepository
+                .findByOwnerIdAndCombustibleId(entrega.getEstacion().getId(), entrega.getCombustible().getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Inventory de estación no encontrado"));
 
-        inventario.setCantidadCombustible(inventario.getCantidadCombustible()+ entrega.getCantidad());
-        inventarioRepository.save(inventario);
+        inventarioEstacion.setCantidadCombustible(inventarioEstacion.getCantidadCombustible() + entrega.getCantidad());
+        inventarioRepository.save(inventarioEstacion);
+
+        if (entrega.getDistribuidor() != null) {
+            Inventory inventarioDistribuidor = inventarioRepository
+                    .findByOwnerIdAndCombustibleId(entrega.getDistribuidor().getId(), entrega.getCombustible().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Inventory de distribuidor no encontrado"));
+
+            inventarioDistribuidor.setCantidadCombustible(inventarioDistribuidor.getCantidadCombustible() - entrega.getCantidad());
+            inventarioRepository.save(inventarioDistribuidor);
+        }
 
         entrega.setEstado(EntregaEstado.CONFIRMADO.name());
         return entregaRepository.save(entrega);
@@ -64,9 +75,16 @@ public class DeliveryServiceImpl implements DeliveryService {
         Fuel combustible = fuelRepository.findById(dto.getCombustible().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Combustible no encontrado"));
 
+        double total = 0;
+        var precio = priceRepository.findByOwnerIdAndCombustibleId(distribuidor.getId(), combustible.getId());
+        if (precio.isPresent()) {
+            total = dto.getCantidad() * precio.get().getPrecio();
+        }
+
         Delivery entrega = Delivery.builder()
                 .placa(dto.getPlaca())
                 .cantidad(dto.getCantidad())
+                .total(total)
                 .combustible(combustible)
                 .estacion(estacion)
                 .distribuidor(distribuidor)

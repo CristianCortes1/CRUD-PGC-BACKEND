@@ -17,10 +17,17 @@ public class PriceServiceImpl implements PriceService {
     private final PriceRepository precioRepository;
 
     @Override
-    public List<PriceResponseDTO> getAllPricesByEstacionId(Long id) {
-        return precioRepository.findByEstacionId(id).stream()
+    public List<PriceResponseDTO> getAllPricesByOwnerId(Long ownerId) {
+        return precioRepository.findByOwnerId(ownerId).stream()
                 .map(PriceMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PriceResponseDTO getPriceByOwnerAndCombustible(Long ownerId, Long combustibleId) {
+        Price price = precioRepository.findByOwnerIdAndCombustibleId(ownerId, combustibleId)
+                .orElseThrow(() -> new RuntimeException("Price not found"));
+        return PriceMapper.toDTO(price);
     }
 
 }

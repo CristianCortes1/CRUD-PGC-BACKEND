@@ -26,6 +26,7 @@ public class Delivery {
 
     private String placa;
     private double cantidad;
+    private Double total;
 
     private LocalDateTime fecha;
 

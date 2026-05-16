@@ -72,7 +72,7 @@ public class TransactionServiceImpl implements TransactionService {
                 Long estacionId = t.getEstacion().getId();
                 Long combustibleId = t.getCombustible().getId();
 
-                precioRepository.findByEstacionId(estacionId)
+                precioRepository.findByOwnerId(estacionId)
                         .stream()
                         .filter(p -> p.getCombustible() != null && p.getCombustible().getId().equals(combustibleId))
                         .findFirst()

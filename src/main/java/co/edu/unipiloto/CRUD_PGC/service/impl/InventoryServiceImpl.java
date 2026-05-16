@@ -14,8 +14,8 @@ public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepository inventarioRepository;
 
     @Override
-    public List<Inventory> buscarPorEstacion(Long estacionId) {
-        return inventarioRepository.findByEstacionId(estacionId);
+    public List<Inventory> buscarPorOwner(Long ownerId) {
+        return inventarioRepository.findByOwnerId(ownerId);
     }
 
     @Override

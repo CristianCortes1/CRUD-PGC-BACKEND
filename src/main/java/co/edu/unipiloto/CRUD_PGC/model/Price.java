@@ -26,8 +26,8 @@ public class Price {
     private double precio;
 
     @ManyToOne
-    @JoinColumn(name = "id_estacion")
-    private User estacion;
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
     @ManyToOne
     @JoinColumn(name = "id_combustible")

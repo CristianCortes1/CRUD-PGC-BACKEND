@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class PriceResponseDTO {
     private Long id;
     private double precio;
-    private Long estacionId;
-    private String estacionUsername;
+    private Long ownerId;
+    private String ownerUsername;
     private Fuel combustible;
 }

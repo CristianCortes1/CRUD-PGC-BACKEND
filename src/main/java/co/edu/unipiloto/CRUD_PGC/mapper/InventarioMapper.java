@@ -7,8 +7,8 @@ public class InventarioMapper {
     public static InventoryResponseDTO toDTO(Inventory inventario) {
         return InventoryResponseDTO.builder()
                 .id(inventario.getId())
-                .estacionId(inventario.getEstacion() == null ? null : inventario.getEstacion().getId())
-                .estacionUsername(inventario.getEstacion() == null ? null : inventario.getEstacion().getUsername())
+                .ownerId(inventario.getOwner() == null ? null : inventario.getOwner().getId())
+                .ownerUsername(inventario.getOwner() == null ? null : inventario.getOwner().getUsername())
                 .combustible(FuelMapper.toDTO(inventario.getCombustible()))
                 .cantidadActual(inventario.getCantidadCombustible())
                 .capacidadMaxima(inventario.getCapacidadMaxima())

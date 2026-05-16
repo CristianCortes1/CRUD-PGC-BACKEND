@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class InventoryController {
     private final InventoryService inventoryService;
 
-    @GetMapping("/station/{id}")
-    public List<InventoryResponseDTO> listarPorEstacion(@PathVariable Long id) {
-        return inventoryService.buscarPorEstacion(id)
+    @GetMapping("/owner/{id}")
+    public List<InventoryResponseDTO> listarPorOwner(@PathVariable Long id) {
+        return inventoryService.buscarPorOwner(id)
                 .stream()
                 .map(InventarioMapper::toDTO)
                 .collect(Collectors.toList());

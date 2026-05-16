@@ -6,6 +6,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
-    List<Inventory> findByEstacionId(Long estacionId);
-    Optional<Inventory> findByEstacionIdAndCombustibleId(Long estacionId, Long combustibleId);
+    List<Inventory> findByOwnerId(Long ownerId);
+    Optional<Inventory> findByOwnerIdAndCombustibleId(Long ownerId, Long combustibleId);
 }

@@ -23,6 +23,7 @@ public class DeliveryMapper {
                 .id(entrega.getId())
                 .placa(entrega.getPlaca())
                 .cantidad(entrega.getCantidad())
+                .total(entrega.getTotal())
                 .estado(entrega.getEstado() == null ? null : entrega.getEstado())
                 .fechaFormateada(fechaFormateada)
                 .fechaConfirmacion(fechaConfirmacion)
